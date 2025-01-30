@@ -28,22 +28,24 @@ def main():
     st.markdown("""
     <div style='background-color: #f0f2f6; padding: 15px; border-radius: 5px; margin-bottom: 20px;'>
         <h3 style='margin-top: 0;'>Model Input Features:</h3>
-        <p><strong>Required columns for prediction:</strong></p>
+        <p><strong>Required Feature Colums for prediction:</strong></p>
         <ul>
             <li><strong>Field Information:</strong> Подразделение, Поле, Field_ID</li>
-            <li><strong>Vegetation Indices:</strong> MAX_NDVI, 7_NDVI, 193_NDVI, 201_NDVI, 209_NDVI</li>
-            <li><strong>Weather Data:</strong> 
+            <li><strong>Vegetation Indices:</strong> Max_NDVI(Maximum During Growing Season), 7_NDVI (July Median NDVI)</li>
+            <li><strong>Weather Data from May to August(5-8):</strong> 
                 <ul>
-                    <li>Humidity: 6_relative_humidity, 7_relative_humidity</li>
-                    <li>Temperature: 7_temperature_2m_min</li>
-                    <li>Precipitation: 5_total_precipitation_sum, 7_total_precipitation_sum</li>
-                    <li>Wind: 5_v_component_of_wind_10m</li>
-                    <li>Vapor Pressure: 5_vapor_pressure_deficit, 6_vapor_pressure_deficit</li>
+                    <li>Humidity</li>
+                    <li>Max Temperature</li>
+                    <li>Minimum Temperature</li>
+                    <li>Precipitation </li>
+                    <li>Wind </li>
+                    <li>Surface Solar Radiation</li>
+                    <li>Vapor Pressure</li>
                 </ul>
             </li>
-            <li><strong>Soil Properties:</strong> cec, clay, sand, silt</li>
-            <li><strong>Sowing Date:</strong> DOY_min</li>
-            <li><strong>Agricultural Practice:</strong> Агрофон</li>
+            <li><strong>Soil Properties:</strong> bdod(Bulk density),cec(Cation exchange capacity at pH),clay(Clay),phh2o(pH in H2O),sand(Sand),silt(Silt),soc(Soil organic carbon)</li>
+            <li><strong>Sowing Date:</strong> DOY_min, DOY_max</li>
+            <li><strong>Agricultural Background Info:</strong> Агрофон</li>
         </ul>
         <p><em>Optional: 'Yield' column for comparing predictions with actual yields</em></p>
     </div>

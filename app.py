@@ -91,7 +91,8 @@ def main():
         feature_names = (numeric_features + 
                         preprocessor.named_transformers_['cat'].get_feature_names_out(categorical_features).tolist())
         processed_df = pd.DataFrame(processed_data, columns=feature_names)
-        
+        if 'Агрофон_others' in processed_df.columns:
+            processed_df = processed_df.drop(columns=['Агрофон_others'])
         # Make predictions
         predictions = model.predict(processed_df)
         

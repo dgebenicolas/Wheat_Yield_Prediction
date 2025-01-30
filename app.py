@@ -12,7 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from utils import (
     setup_preprocessor, check_csv_format, process_data, 
     map_agrofon_to_group, REQUIRED_COLUMNS, COLUMN_DTYPES,
-    process_data_yield, remove_outliers_iqr
+    process_data_yield
 )
 current_dir = os.path.dirname(os.path.abspath(__file__))
 def load_model():

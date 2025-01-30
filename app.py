@@ -17,7 +17,7 @@ from utils import (
 current_dir = os.path.dirname(os.path.abspath(__file__))
 def load_model():
     try:
-        model = lgb.Booster(model_file = os.path.join(current_dir, 'lgbfit.txt'))
+        model = lgb.Booster(model_file = os.path.join(current_dir, 'lgbfit_new.txt'))
         return model
     except Exception as e:
         st.error(f"Error loading model: {str(e)}")

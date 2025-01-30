@@ -4,23 +4,70 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
 REQUIRED_COLUMNS = [
-    'Подразделение', 'Поле', 'Field_ID', 'Агрофон', 'MAX_NDVI', '7_NDVI', 
-    '6_relative_humidity', '7_relative_humidity', '7_temperature_2m_min',
-    '5_total_precipitation_sum', '7_total_precipitation_sum', 
-    '5_v_component_of_wind_10m', '5_vapor_pressure_deficit', 
-    '6_vapor_pressure_deficit', 'DOY_min', 'cec', 'clay', 'sand', 'silt',
-    '193_NDVI', '201_NDVI', '209_NDVI'
+    'Подразделение', 'Поле', 'Field_ID', 'Агрофон', 'MAX_NDVI', '7_NDVI', '5_relative_humidity',
+       '6_relative_humidity', '7_relative_humidity', '8_relative_humidity',
+       '5_surface_solar_radiation_downwards_sum',
+       '6_surface_solar_radiation_downwards_sum',
+       '7_surface_solar_radiation_downwards_sum',
+       '8_surface_solar_radiation_downwards_sum', '5_temperature_2m_max',
+       '6_temperature_2m_max', '7_temperature_2m_max', '8_temperature_2m_max',
+       '5_temperature_2m_min', '6_temperature_2m_min', '7_temperature_2m_min',
+       '8_temperature_2m_min', '5_total_precipitation_sum',
+       '6_total_precipitation_sum', '7_total_precipitation_sum',
+       '8_total_precipitation_sum', '5_v_component_of_wind_10m',
+       '6_v_component_of_wind_10m', '7_v_component_of_wind_10m',
+       '8_v_component_of_wind_10m', '5_vapor_pressure_deficit',
+       '6_vapor_pressure_deficit', '7_vapor_pressure_deficit',
+       '8_vapor_pressure_deficit', 'DOY_min', 'DOY_max', 'bdod', 'cec', 'clay',
+       'phh2o', 'sand', 'silt', 'soc'
 ]
 
 COLUMN_DTYPES = {
-    'Агрофон': 'object', 'MAX_NDVI': 'float64', '7_NDVI': 'float64', '6_relative_humidity': 'float64',
-    '7_relative_humidity': 'float64', '7_temperature_2m_min': 'float64',
-    '5_total_precipitation_sum': 'float64', '7_total_precipitation_sum': 'float64',
-    '5_v_component_of_wind_10m': 'float64', '5_vapor_pressure_deficit': 'float64',
-    '6_vapor_pressure_deficit': 'float64', 'DOY_min': 'int64', 'cec': 'float64',
-    'clay': 'float64', 'sand': 'float64', 'silt': 'float64', '193_NDVI': 'float64',
-    '201_NDVI': 'float64', '209_NDVI': 'float64','Агрофон': 'object'
+    'Подразделение': 'object',
+    'Поле': 'object',
+    'Field_ID': 'object',
+    'Агрофон': 'object',
+    'MAX_NDVI': 'float64',
+    '7_NDVI': 'float64',
+    '5_relative_humidity': 'float64',
+    '6_relative_humidity': 'float64',
+    '7_relative_humidity': 'float64',
+    '8_relative_humidity': 'float64',
+    '5_surface_solar_radiation_downwards_sum': 'float64',
+    '6_surface_solar_radiation_downwards_sum': 'float64',
+    '7_surface_solar_radiation_downwards_sum': 'float64',
+    '8_surface_solar_radiation_downwards_sum': 'float64',
+    '5_temperature_2m_max': 'float64',
+    '6_temperature_2m_max': 'float64',
+    '7_temperature_2m_max': 'float64',
+    '8_temperature_2m_max': 'float64',
+    '5_temperature_2m_min': 'float64',
+    '6_temperature_2m_min': 'float64',
+    '7_temperature_2m_min': 'float64',
+    '8_temperature_2m_min': 'float64',
+    '5_total_precipitation_sum': 'float64',
+    '6_total_precipitation_sum': 'float64',
+    '7_total_precipitation_sum': 'float64',
+    '8_total_precipitation_sum': 'float64',
+    '5_v_component_of_wind_10m': 'float64',
+    '6_v_component_of_wind_10m': 'float64',
+    '7_v_component_of_wind_10m': 'float64',
+    '8_v_component_of_wind_10m': 'float64',
+    '5_vapor_pressure_deficit': 'float64',
+    '6_vapor_pressure_deficit': 'float64',
+    '7_vapor_pressure_deficit': 'float64',
+    '8_vapor_pressure_deficit': 'float64',
+    'DOY_min': 'int64',
+    'DOY_max': 'int64',
+    'bdod': 'float64',
+    'cec': 'float64',
+    'clay': 'float64',
+    'phh2o': 'float64',
+    'sand': 'float64',
+    'silt': 'float64',
+    'soc': 'float64'
 }
+
 
 def setup_preprocessor(pre_process_df):
     numeric_features = list(pre_process_df.drop(['Агрофон'], axis=1)
@@ -86,7 +133,7 @@ def remove_outliers_iqr(df, column):
 def process_data_yield(df):
     # Store IDs and Yield before processing
     df_cleaned = df.copy()
-    df_cleaned = remove_outliers_iqr(df_cleaned, 'Yield')
+    #df_cleaned = remove_outliers_iqr(df_cleaned, 'Yield')
     id_columns = df_cleaned[['Подразделение', 'Поле', 'Field_ID', 'Yield']].copy()
     
     # Drop ID columns and Yield, and reorder remaining columns

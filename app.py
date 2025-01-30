@@ -186,7 +186,7 @@ def main():
         
         try:
 
-            geojson_filepath = os.path.join(current_dir,f'With_Holes_FIELDS_Geo_Boundaries__{year}.geojson')
+            geojson_filepath = os.path.join(current_dir,'All Fields Polygons.geojson')
             
             if not os.path.exists(geojson_filepath):
                 st.error(f"Field boundaries data for year {year} not found. Please select a different year.")
